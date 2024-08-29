@@ -2,7 +2,7 @@ import random
 
 '''
 contents:
-collections
+random
 '''
 
 '''
