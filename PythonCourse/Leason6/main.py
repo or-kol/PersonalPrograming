@@ -45,7 +45,7 @@ while is_running:
     else:
         print("You entered an invalid value")
     
-'''
+
 
 options = ("rock", "paper", "scissors")
 player = None
@@ -76,7 +76,7 @@ while 'q' != player:
     
     print("----------------------------")
 
-
+'''
 
 
 
