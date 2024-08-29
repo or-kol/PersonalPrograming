@@ -1,0 +1,47 @@
+package com.company;
+
+import lombok.ToString;
+
+import java.util.Date;
+
+@ToString
+
+public class Song {
+
+    public final Date releaseDate = new Date();
+    public final String songName;
+    public float rating;
+
+    public static int songCounter = 0;
+    public final int songNumber;
+
+    public static int goldStandard = 11;
+    public static boolean afterGold;
+
+    public Song(String songName, float rating) {
+        this.songName = songName;
+        this.rating = rating;
+        this.songNumber = ++songCounter;
+
+        afterGold = songNumber > goldStandard;
+    }
+
+    public static void resetCounter() {
+        songCounter = 0;
+    }
+
+    public float numberOfSongInTheGlobalCount() {
+        return songNumber / songCounter;
+    }
+
+
+    public static Song[] first10 = {new Song ("a", 1.2f), new Song ("b", 1.7f),
+            new Song ("c", 3.2f), new Song ("d", 10.3f), new Song ("e", 0.5f),
+            new Song ("f", 5.3f), new Song ("g", 4.2f),  new Song ("h", 1.1f),
+            new Song ("i", 3.5f),  new Song ("j", 8.1f)};
+
+    public static Song hallelujah = new Song("hallelujah", 100.0f);
+
+
+
+}
