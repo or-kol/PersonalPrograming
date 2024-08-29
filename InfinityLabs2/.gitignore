@@ -1,0 +1,12 @@
+#IGNORE
+*
+#
+#ALLOW
+!*/
+!*.c
+!*.h
+!*.myfunc
+!*.md
+!*.gitignore
+!*.exe
+!Makefile*
