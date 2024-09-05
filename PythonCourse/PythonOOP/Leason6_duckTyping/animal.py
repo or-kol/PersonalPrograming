@@ -1,0 +1,4 @@
+
+
+class Animal:
+    alive = True
