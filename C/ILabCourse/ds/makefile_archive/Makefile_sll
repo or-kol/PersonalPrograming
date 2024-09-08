@@ -1,0 +1,35 @@
+
+CC = gcc
+CFLAGS = -ansi -pedantic-errors -Wall -Wextra -g
+CRELEASE_FLAGS = -ansi -pedantic-errors -Wall -Wextra -DNDEBUG -O3
+
+DEBUG = gdb
+VLG = valgrind --leak-check=yes --track-origins=yes
+
+SRC = ./src/sll.c ./test/sll_test.c
+
+sll.exe : $(SRC)
+	@echo "Compile executable"
+	$(CC) $(CFLAGS) -o ./bin/debug/sll.exe $(SRC) -I include
+
+$(SRC) : ./include/sll.h
+
+run : 
+	@echo "Run executable"
+	./bin/debug/sll.exe
+.PHONY : run
+
+
+debug : 
+	$(DEBUG) ./bin/debug/sll.exe
+.PHONY : debug
+
+
+vlg :
+	$(VLG) ./bin/debug/sll.exe
+
+
+files :
+	gedit ./include/sll.h ./src/sll.c ./test/sll_test.c &
+.PHONY : files
+
