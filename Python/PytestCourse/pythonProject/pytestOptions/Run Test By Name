@@ -1,0 +1,19 @@
+
+we have the -k flag in cmd which allows us to select the tests we want to run by name (it could be file name, folder name, test name etc):
+
+this flag is not case sensitive which means we can't distinct between lower and upper case letters in the names.
+
+**
+--tb=no:
+tb = trace back
+when set tto 'no' - this option will cancel the display of the information about the fail.
+it will display the fail itself, but nothing more.
+**
+
+pytest -v -k "options" --tb=no - will tun all tests, folders and files with the word 'options' in their names
+pytest -v -k "case or str" --tb=no - will tun all tests, folders and files with the words 'case' or 'str' in their names
+pytest -v -k "case or str" --tb=no - will tun all tests, folders and files with the words 'case' and 'str' in their names
+pytest -v -k "xfail" --tb=no - will tun all tests, folders and files with the word 'xfail' in their names and all tests that marked as xfail.
+
+** we can use not - and - or operators in this flag**
+

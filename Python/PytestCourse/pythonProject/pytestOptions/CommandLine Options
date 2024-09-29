@@ -1,0 +1,109 @@
+
+
+Getting help on version, option names, environment variables:
+pytest --version   # shows where pytest was imported from
+pytest --fixtures  # show available builtin function arguments
+pytest -h | --help # show help on command line and config file options
+
+
+
+Stopping after the first (or N) failures:
+To stop the testing process after the first (N) failures:
+pytest -x           # stop after first failure
+pytest --maxfail=2  # stop after two failures
+
+
+
+showing all tests in specific path (not run them, just list them):
+pytest --collect-only
+pytest --co             #(shortcut)
+
+
+
+running only tests that failed in last run:
+for example we ran: pytest -v
+we got 3 failures
+
+# lf = last-fail
+when running with 'pytest -v --lf' after the first run
+only the 3 failures will be re-triggered.
+
+#ff = failed-first
+when running with 'pytest -v --ff' after the first run
+the 3 failures will run first and then all the other tests.
+
+
+
+Run tests by keyword expressions (see more in run test by name file):
+
+pytest -k "MyClass and not method"
+
+This will run tests which contain names that match the given string expression (case-insensitive),
+which can include Python operators that use filenames, class names and function names as variables.
+The example above will run TestMyClass.test_something but not TestMyClass.test_method_simple.
+
+
+
+Run tests by node ids:
+Each collected test is assigned a unique nodeid which consist of the module filename followed by specifiers like class names,
+function names and parameters from parametrization, separated by :: characters.
+
+To run a specific test within a module:
+pytest test_mod.py::test_func
+
+Another example specifying a test method in the command line:
+pytest test_mod.py::TestClass::test_method
+
+
+
+Run tests by marker expressions:
+pytest -m slow
+
+Will run all tests which are decorated with the @pytest.mark.slow decorator.
+
+
+
+Run tests from packages:
+
+pytest --pyargs pkg.testing
+This will import pkg.testing and use its filesystem location to find and run tests from.
+
+
+
+Modifying Python traceback printing
+Examples for modifying traceback printing:
+pytest --showlocals # show local variables in tracebacks
+pytest -l           # show local variables (shortcut)
+
+pytest --tb=auto    # (default) 'long' tracebacks for the first and last entry, but 'short' style for the other entries
+pytest --tb=long    # exhaustive, informative traceback formatting
+pytest --tb=short   # shorter traceback format
+pytest --tb=line    # only one line per failure
+pytest --tb=native  # Python standard library formatting
+pytest --tb=no      # no traceback at all
+
+** The --full-trace causes very long traces to be printed on error (longer than --tb=long).
+It also ensures that a stack trace is printed on KeyboardInterrupt (Ctrl+C).
+This is very useful if the tests are taking too long and you interrupt them with Ctrl+C to find out where the tests are hanging.
+By default no output will be shown (because KeyboardInterrupt is caught by pytest). By using this option you make sure a trace is shown.
+
+
+
+Detailed summary report:
+pytest -ra
+
+Here is the full list of available characters that can be used:
+f - failed
+E - error
+s - skipped
+x - xfailed
+X - xpassed
+p - passed
+P - passed with output
+
+Special characters for (de)selection of groups:
+a - all except pP
+A - all
+N - none, this can be used to display nothing (since fE is the default)
+
+
