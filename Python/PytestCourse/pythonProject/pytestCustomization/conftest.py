@@ -1,3 +1,4 @@
+import os
 import pytest
 
 
@@ -13,7 +14,7 @@ def cmdOpt(pytestconfig):
     opt = pytestconfig.getoption("cmdopt")
     print("\n In cmpOpt fixture function")
     if opt == "prod":
-        f = open(prod_config, 'r')
+        f = open(os.path.join(os.path.dirname(__file__), prod_config), 'r')
     else:
-        f = open(qa_config, 'r')
+        f = open(os.path.join(os.path.dirname(__file__), qa_config), 'r')
     yield f

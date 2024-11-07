@@ -1,6 +1,6 @@
 
 
-class TestMyStuff():
+class TestMyStuffSuite():
     def testType(self):
         assert type(1) == int
 
