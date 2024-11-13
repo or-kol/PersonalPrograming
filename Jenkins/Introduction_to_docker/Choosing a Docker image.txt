@@ -1,0 +1,68 @@
+Let's address a common question why do we need to use Node.js in our Jenkins pipeline?
+In this lecture and understand where to look for these Docker images.
+
+In a Jenkins stage, We need to choose a Docker image that already has the necessary 
+technology installed for our project. This is crucial for ensuring that our Jenkins 
+environment is ready to handle our specific project requirements without additional setup.
+In order to select the right Docker image to use, we need to know what kind of a project 
+we have and which version of a specific programming language it needs.
+
+In this case, our project uses Node.js. Or if we don't know exactly which image to use, 
+the first stop should be Docker Hub (https://hub.docker.com/). Docker hub is the default 
+public container registry. This is where most public containers are published, and we can 
+find here a wide range of Docker images. So if our project uses NodeJS, it makes sense to 
+search Docker Hub for an official NodeJS image.
+
+So let's go ahead and type here node. And we can even enable here a filter which says official 
+image. So this will ensure that we don't get any images that are not official. And we're going 
+to go ahead and click here on the first result which is node. And this is the official NodeJS 
+image and this is already a very good starting point.
+
+If you want to use a specific image in this case node, skip over this first part with all the tags,
+which is not really so important, and then go here more towards the end of the documentation where
+it says how to use the image. And it is explaining here the basic syntax. And it's telling you, 
+for example, that node comes in many flavors, meaning there are different kinds of images that 
+contain node and you may have different use cases. For our project, we need node version 18 because 
+the project has been built when version 18 was around. So for that reason, it doesn't make sense 
+to get the latest version of node, which can be maybe 22 (or anything higher than 18). We need a 
+specific version. And in this case, what this syntax is explaining us is that, if we want to 
+use node in version 18, we should write node column 18. Everything that comes after the column in 
+Docker is considered a tag. It is a way to identify a specific image.
+
+If we go all the way up, and as you can see here, right on top we have "tags".
+We can click it and search here for 18. And even when we're searching for 18, there's still a lot 
+of results that we're getting. We scroll all the way down until we can find only 18.
+So this is the tag node 18.
+But why are we using alpine?
+This image, as it is right now, has a very significant size. So it's almost 400MB (we can see that 
+when clicking on the version in Docker Hub -> tags). This means that when we're starting our pipeline, 
+we need to download 400MB almost before we can do anything, and that's quite a lot.
+
+When going back to information about node images in general. And so if you scroll again down to the 
+documentation here, you're going to see here also this -alpine. this means is that this image is using 
+the Alpine Linux project, which is a Linux distribution which is very, very small in size and is ideal 
+for containers. So just to show you how small in size this is. The previous one was almost 400MB.
+And when we are looking on 18-alpine, we see that the size of this image is 42MB.
+
+But what if you are using a different programming language? Most programming languages or runtime 
+environments like Node.js have official Docker images available. So let me give you just a few examples:
+
+For Python developers, all you have to do is search for Python. And you're going to find here a Python 
+image you're going to see right on top here Docker official image. And the same idea applies here to 
+Python as well. So we're going to scroll over the documentation, and here you're going to see here for 
+Python you have image variants. For example, if you're using Python three, all you have to do here is 
+probably use three Python:3. And if you're looking for a smaller version, you can use here -slim or -alpine.
+Just to be sure, go to the tags right on top and search for that specific tab.
+
+Same idea applies, for example, for Java you will need to do is to search for open JDK. Again, this is an 
+official Docker image and for OpenJDK. At the beginning we will see this "DEPRECATION NOTICE" warning. 
+So this image is being depreciated, but they are here some recommendations in terms of finding a proper 
+image for you.So all you have to do is go a bit through this and understand what's going on.
+
+Practically any programming language or major framework has its own official Docker image that you can use.
+It just requires you to go to Docker Hub, search for that image, identify that it is an official image, and 
+take two minutes to go through the documentation. Just spending those two minutes going through the 
+documentation patiently will save you so much time on the long run.
+
+One exception on where to find image is .NET (Microsoft). this is where we can fined images: 
+https://mcr.microsoft.com/en-us/
