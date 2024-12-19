@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome()
 driver.maximize_window()
 
+# Home Work:
+# https://docs.google.com/document/d/1oR6Co-KDMVV7EQ20KV0GuVXXd0yWx7sV/edit?usp=sharing&ouid=105968411837263593065&rtpof=true&sd=true
 
 # Exercise 1:
 driver.get("https://prd.canvusapps.com/signup")
@@ -94,6 +96,7 @@ print("Yes!" if google_title == "Google" or "google" in google_title else "No!")
 driver.back()
 back_title = driver.title
 print("Yes!" if selenium_title == "selenium web site" or "Selenium" in selenium_title else "No!")
+
 input("Enter to close browser")
 
 
