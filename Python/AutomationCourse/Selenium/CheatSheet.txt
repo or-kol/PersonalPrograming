@@ -1,0 +1,50 @@
+
+Main Commands:
+    webdriver.Chrome() - Open Chrome browser window.
+    driver.get(url) = Load URL address
+    driver.maximize_window() - Full screen window
+    driver.refresh() - Refresh current page
+    driver.back() - Back to previous page
+    driver.forward() - Forward page
+    driver.current_url - Returns current page URL
+    driver.title - Returns current page title
+    driver.quit() - Close all windows of the browser and terminates the process.
+    driver.close() - Close current browser window only
+    driver.page_source - Returns full HTML of current page
+
+
+Find Attributes:
+    - By ID:
+    driver.find_element(By.CSS_SELECTOR, "#id_value")
+
+    - By Class:
+    driver.find_element(By.CSS_SELECTOR, ".class_value")
+
+    - By attribute:
+    driver.find_element(By.CSS_SELECTOR, "[attribute='value']")
+
+    Special Cases:
+        If the attribute has no unique permanent values we will search its parents:
+            // In this example We have 2 tags with the same class and name
+            <div id="area1">
+                <a id="help" href="http://www.automation.co.il">click to open help</a>
+            </div>
+            <div id="area2">
+                <a id="help" href="http://www.automation.co.il">click to open help</a>
+            </div>
+
+            // Find element by the parent and a tag name
+            driver.FindElement(By.CssSelector("#area1>a")).Click();
+
+        If we want part of attribute we have the $/^/* operators:
+            attribute$='value' - attribute end with value
+            attribute^='value' - attribute start with value
+            attribute*='value' - attribute contain the value
+
+        If we have issue with finding the selector for the attribute we can find the element in dev tools -> right click ->
+        copy -> copy selector.
+        This is not always useful since it might select values that might change, but it can assist greatly.
+
+
+
+

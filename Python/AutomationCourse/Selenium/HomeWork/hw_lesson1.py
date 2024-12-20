@@ -39,9 +39,9 @@ driver.get("http://www.ebay.com/sch/ebayadvsearch")
 
 driver.find_element(By.CSS_SELECTOR, "#_nkw").send_keys("tent")
 driver.find_element(By.CSS_SELECTOR, "#_ex_kw").send_keys("blue, open, small")
-driver.find_element(By.CSS_SELECTOR, "[data-marko*='s0-1-17-12']").click()
+driver.find_element(By.CSS_SELECTOR, ".adv-form__actions>button").click()
 driver.back()
-driver.find_element(By.CSS_SELECTOR, "[data-marko*='s0-1-17-4[0]-9']").click()
+driver.find_element(By.CSS_SELECTOR, ".adv-keywords__btn-help>button").click()
 
 
 
