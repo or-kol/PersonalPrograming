@@ -51,6 +51,7 @@ complete_page = CompletePurchase(driver)
 print(complete_page.getMsg())
 complete_page.backHome()
 
+prod_list_page.logout()
 
 
 input("Enter to close")
