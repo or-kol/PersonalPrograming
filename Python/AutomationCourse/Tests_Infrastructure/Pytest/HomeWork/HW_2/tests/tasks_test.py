@@ -20,7 +20,6 @@ class TestTasksPage:
         assert actual == expected, f"Actual result = '{actual}', expected = '{expected}'"
 
     def testCreatNewListAndAddTwoTasks(self):
-        sleep(30)
         tasks_page.creatNewList("New Tasks List")
 
         tasks_page.addSimpleTask("New Tasks List", "New Task1")

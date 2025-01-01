@@ -41,7 +41,6 @@ class TasksPage(BasePage):
         self.click(self.CREATE_ADVANCED_TASK_BTN)
 
     def getAmountOfTasks(self):
-
         return self.getText(self.AMOUNT_OF_TASKS_FIELD)
 
     def moveToAllTasksList(self):
