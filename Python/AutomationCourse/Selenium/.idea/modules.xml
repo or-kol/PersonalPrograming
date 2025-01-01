@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../PageObjectModel/.idea/PageObjectModel.iml" filepath="$PROJECT_DIR$/../PageObjectModel/.idea/PageObjectModel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/SeleniumCourse.iml" filepath="$PROJECT_DIR$/.idea/SeleniumCourse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Selenium.iml" filepath="$PROJECT_DIR$/.idea/Selenium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Tests_Infrastructure/.idea/Tests_Infrastructure.iml" filepath="$PROJECT_DIR$/../Tests_Infrastructure/.idea/Tests_Infrastructure.iml" />
     </modules>
   </component>
 </project>
