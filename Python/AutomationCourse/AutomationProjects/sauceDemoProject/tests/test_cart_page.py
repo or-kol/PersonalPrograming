@@ -1,13 +1,22 @@
+import allure
 import pytest
+import allure
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from utils.config_reader import ConfigReader
 from utils.general_helpers import GeneralHelp
 
+@allure.epic("Purchase")
+@allure.feature("Cart")
 class TestCartPage:
 
     product_list = ConfigReader.get_keys("products_list")
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, adding product to cart, going to cart to make sure correct product was added. "
+                        "Then logging out")
+    @allure.title("Correct item added to cart")
+    @allure.story("Adding a product to cart, going to cart and validate that the product added to cart is correct")
     @pytest.mark.parametrize("product", product_list)
     def test_correct_item_added_to_cart(self, product):
         prod_list_page = GeneralHelp.login(self)
@@ -24,6 +33,11 @@ class TestCartPage:
         assert expected_result in actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, adding product to cart, going to cart to make sure product was added to cart,"
+                        "remove item from cart. Then logging out")
+    @allure.title("remove from cart from cart page")
+    @allure.story("Adding a product to cart, going to cart and removing the product from cart page")
     @pytest.mark.parametrize("product", product_list)
     def test_remove_item_from_cart(self, product):
         prod_list_page = GeneralHelp.login(self)
@@ -48,6 +62,10 @@ class TestCartPage:
             f"there are {actual_num_of_products_in_cart} in cart, expected {expected_num_of_products_in_cart}"
 
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, going to cart, go to checkout. Then logging out")
+    @allure.title("Go to checkout page")
+    @allure.story("Going to cart page and continue to checkout page")
     def test_go_to_checkout_page(self):
         prod_list_page = GeneralHelp.login(self)
         prod_list_page.go_to_cart()
@@ -64,6 +82,11 @@ class TestCartPage:
         assert expected_result in actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.description("Logging in, adding product to cart, click continue shopping button. "
+                        "Then logging out")
+    @allure.title("Go to products list page")
+    @allure.story("Going to cart page and going back to product list page")
     def test_go_to_prod_list_page(self):
         prod_list_page = GeneralHelp.login(self)
         prod_list_page.go_to_cart()

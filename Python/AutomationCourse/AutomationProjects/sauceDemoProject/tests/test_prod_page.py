@@ -1,13 +1,21 @@
 from random import random
+
+import allure
+
 from pages.prod_page import ProductPage
 from utils.config_reader import ConfigReader
 from utils.general_helpers import GeneralHelp
 import random
 
+@allure.epic("Website browsing")
+@allure.feature("Product page")
 class TestProductPage:
 
     product_list = ConfigReader.get_values("products_list")
 
+    @allure.description("Logging in, going to product page, adding product to cart. Then logging out")
+    @allure.title("Add to cart from product page")
+    @allure.story("Going to product page and adding the product to cart from the product page")
     def test_add_to_cart(self):
         prod_list_page = GeneralHelp.login(self)
         product_num = int(random.choice(self.product_list))
@@ -22,6 +30,10 @@ class TestProductPage:
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.description("Logging in, going to product page, adding product to cart, checking a product qas added to cart,"
+                        "remove product from cart. Then logging out")
+    @allure.title("remove from cart from product page")
+    @allure.story("Going to product page, adding the product to cart and removing the product from cart from the product page")
     def test_remove_from_cart(self):
         prod_list_page = GeneralHelp.login(self)
         product_num = int(random.choice(self.product_list))
@@ -41,6 +53,9 @@ class TestProductPage:
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.description("Logging in, going to product page, clicking back to products. Then logging out")
+    @allure.title("Clicking back to products button")
+    @allure.story("Going to product page, clicking back to product button, taking to main page")
     def test_back_to_products_btn(self):
         prod_list_page = GeneralHelp.login(self)
         product_num = int(random.choice(self.product_list))

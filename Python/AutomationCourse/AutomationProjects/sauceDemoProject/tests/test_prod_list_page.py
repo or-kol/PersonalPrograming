@@ -1,13 +1,20 @@
+import allure
 import pytest
 from pages.cart_page import CartPage
 from pages.prod_page import ProductPage
 from utils.config_reader import ConfigReader
 from utils.general_helpers import GeneralHelp
 
+@allure.epic("Website browsing")
+@allure.feature("Main page (product list page)")
 class TestProductsList:
     
     product_list = ConfigReader.get_keys("products_list")
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, going to product page, verify it's the correct product. Then logging out")
+    @allure.title("Go to product page")
+    @allure.story("Going to product page")
     @pytest.mark.parametrize("product", product_list)
     def test_go_to_product_page(self, product):
         prod_list_page = GeneralHelp.login(self)
@@ -21,6 +28,10 @@ class TestProductsList:
         assert expected_result in actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, going to cart. Then logging out")
+    @allure.title("Go to cart")
+    @allure.story("Going to cart")
     def test_go_to_cart_page(self):
         prod_list_page = GeneralHelp.login(self)
         prod_list_page.go_to_cart()
@@ -32,6 +43,10 @@ class TestProductsList:
         assert expected_result in actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, quick adding to cart, checking an item was added to cart. Then logging out")
+    @allure.title("Add to cart from products list page")
+    @allure.story("Adding product to cart from main page")
     @pytest.mark.parametrize("product", product_list)
     def test_quick_add_to_cart(self, product):
         prod_list_page = GeneralHelp.login(self)
@@ -44,6 +59,11 @@ class TestProductsList:
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, quick adding to cart, checking an item was added to cart, quick remove from cart"
+                        "checking that the cart is empty. Then logging out")
+    @allure.title("remove from cart from products list page")
+    @allure.story("Removing product from cart from main page")
     @pytest.mark.parametrize("product", product_list)
     def test_quick_remove_from_cart(self, product):
         prod_list_page = GeneralHelp.login(self)
@@ -64,36 +84,33 @@ class TestProductsList:
 
 
     sort_options = ConfigReader.get_values("product_sort_options")
+
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.description("Logging in, set items list sort, checking items order. Then logging out")
+    @allure.title("Products list sort")
+    @allure.story("Sorting products list")
     @pytest.mark.parametrize("sort", sort_options)
     def test_product_sort(self, sort):
         prod_list_page = GeneralHelp.login(self)
         prod_list_page.sort_products(sort)
 
-        expected_products1_4_6 = []
+        expected_result = sort
+        actual_result = "Sorting Error"
+
         match sort:
             case "az":
-                expected_products1_4_6 = [self.product_list[0].replace("_position", "").replace("_", " "),
-                                          self.product_list[3].replace("_position", "").replace("_", " "),
-                                          self.product_list[5].replace("_position", "").replace("_", " ")]
+                products_names_list = prod_list_page.get_products_names_list()
+                actual_result = sort if products_names_list == sorted(products_names_list) else "Sorting Error"
             case "za":
-                expected_products1_4_6 = [self.product_list[5].replace("_position", "").replace("_", " "),
-                                          self.product_list[2].replace("_position", "").replace("_", " "),
-                                          self.product_list[0].replace("_position", "").replace("_", " ")]
+                products_names_list = prod_list_page.get_products_names_list()
+                actual_result = sort if products_names_list == sorted(products_names_list, reverse=True) else "Sorting Error"
             case "lohi":
-                expected_products1_4_6 = [self.product_list[4].replace("_position", "").replace("_", " "),
-                                          self.product_list[5].replace("_position", "").replace("_", " "),
-                                          self.product_list[3].replace("_position", "").replace("_", " ")]
+                products_prices_list = prod_list_page.get_products_prices_list()
+                actual_result = sort if products_prices_list == sorted(products_prices_list, key=lambda x: float(x[1:])) else "Sorting Error"
             case "hilo":
-                expected_products1_4_6 = [self.product_list[3].replace("_position", "").replace("_", " "),
-                                          self.product_list[5].replace("_position", "").replace("_", " "),
-                                          self.product_list[4].replace("_position", "").replace("_", " ")]
+                products_prices_list = prod_list_page.get_products_prices_list()
+                actual_result = sort if products_prices_list == sorted(products_prices_list, key=lambda x: float(x[1:]), reverse=True) else "Sorting Error"
             case _:
                 print(f"{sort} is invalid sorting option")
 
-        actual_products1_4_6 = [prod_list_page.get_nth_product_in_page(1).lower(),
-                                prod_list_page.get_nth_product_in_page(4).lower(),
-                                prod_list_page.get_nth_product_in_page(6).lower()]
-
-        for idx in range(3):
-            assert expected_products1_4_6[idx] in actual_products1_4_6[idx], \
-                f"Actual result = '{actual_products1_4_6}', expected = '{expected_products1_4_6}'"
+        assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"

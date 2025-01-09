@@ -1,3 +1,4 @@
+import allure
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.complete_purchase_page import CompletePurchasePage
@@ -6,13 +7,14 @@ from pages.prod_list_page import ProductsList
 from utils.config_reader import ConfigReader
 from utils.general_helpers import GeneralHelp
 
-
+@allure.epic("Purchase")
+@allure.feature("Complete purchase")
 class TestCompletePurchasePage:
 
     def get_to_copmlete_purchase_page(self, product):
-        first_name = ConfigReader.read_config("checkout_data", "first_name5")
-        last_name = ConfigReader.read_config("checkout_data", "last_name5")
-        zip = ConfigReader.read_config("checkout_data", "zip5")
+        first_name = ConfigReader.read_config("valid_checkout_data", "first_name5")
+        last_name = ConfigReader.read_config("valid_checkout_data", "last_name5")
+        zip = ConfigReader.read_config("valid_checkout_data", "zip5")
 
         prod_list_page = GeneralHelp.login(self)
         GeneralHelp.add_product_to_cart(self, prod_list_page, product)
@@ -30,6 +32,11 @@ class TestCompletePurchasePage:
         return CompletePurchasePage(self.driver)
 
 
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.description("Logging in, adding product to cart, going to cart, go to checkout, continue to overview page, "
+                        "finish transaction. Then logging out")
+    @allure.title("Clicking back home button in complete transaction page")
+    @allure.story("Clicking back home take to main page")
     def test_back_home_btn(self):
         overview_page = self.get_to_copmlete_purchase_page("Sauce_Labs_Onesie_position")
         overview_page.go_to_prod_list_page()

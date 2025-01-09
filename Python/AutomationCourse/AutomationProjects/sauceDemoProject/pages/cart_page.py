@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -19,6 +20,7 @@ class CartPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
+    @allure.step("Remove product (product number in DB is : {prod})")
     def remove_item_from_cart(self, prod):
         match prod:
             case 1:
@@ -36,17 +38,22 @@ class CartPage(BasePage):
             case _:
                 print(f"{prod} is invalid input")
 
+    @allure.step("Go to products list page")
     def go_back_to_prod_list_page(self):
         self.click(self.CONTINUE_SHOPPING_BTN)
 
+    @allure.step("Go to checkout page")
     def go_to_checkout_page(self):
         self.click(self.CHECKOUT_BTN)
 
+    @allure.step("Get items list from cart")
     def get_cart_list(self):
         return self.get_elements_list(self.CART_LIST)
 
+    @allure.step("Get amount of items in cart")
     def get_amount_of_prod_in_cart(self):
         return self.get_text(self.CART_BADGE)
 
+    @allure.step("Get cart page title")
     def get_cart_page_title(self):
         return self.get_text(self.CART_PAGE_TITLE)

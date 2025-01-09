@@ -9,7 +9,7 @@ class GeneralHelp():
     def login(self):
         login_page = LoginPage(self.driver)
         user_name = ConfigReader.read_config("login_info", "valid_user_name")
-        password = ConfigReader.read_config("login_info", "password")
+        password = ConfigReader.read_config("login_info", "valid_password")
         login_page.fill_info(user_name, password)
         return ProductsList(self.driver)
 

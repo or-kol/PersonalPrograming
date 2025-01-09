@@ -1,0 +1,25 @@
+Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='error']"}
+  (Session info: chrome=131.0.6778.205); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF7CCEA80D5+2992373]
+	(No symbol) [0x00007FF7CCB3BFD0]
+	(No symbol) [0x00007FF7CC9D590A]
+	(No symbol) [0x00007FF7CCA2926E]
+	(No symbol) [0x00007FF7CCA2955C]
+	(No symbol) [0x00007FF7CCA727D7]
+	(No symbol) [0x00007FF7CCA4F3AF]
+	(No symbol) [0x00007FF7CCA6F584]
+	(No symbol) [0x00007FF7CCA4F113]
+	(No symbol) [0x00007FF7CCA1A918]
+	(No symbol) [0x00007FF7CCA1BA81]
+	GetHandleVerifier [0x00007FF7CCF06A2D+3379789]
+	GetHandleVerifier [0x00007FF7CCF1C32D+3468109]
+	GetHandleVerifier [0x00007FF7CCF10043+3418211]
+	GetHandleVerifier [0x00007FF7CCC9C78B+847787]
+	(No symbol) [0x00007FF7CCB4757F]
+	(No symbol) [0x00007FF7CCB42FC4]
+	(No symbol) [0x00007FF7CCB4315D]
+	(No symbol) [0x00007FF7CCB32979]
+	BaseThreadInitThunk [0x00007FF8A131E8D7+23]
+	RtlUserThreadStart [0x00007FF8A213FBCC+44]
+

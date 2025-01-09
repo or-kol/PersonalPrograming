@@ -1,0 +1,7 @@
+* Triggerring test with allure report:
+    pytest --alluredir="allure-results
+
+* Triggerring test with allure report adding timestamp to report folder name:
+    $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+    pytest --alluredir="allure-results_$timestamp" --no-header --no-summary -q
+
