@@ -11,13 +11,11 @@ from utils.general_helpers import GeneralHelp
 @allure.feature("Complete purchase")
 class TestCompletePurchasePage:
 
-    def get_to_copmlete_purchase_page(self, product):
+    def get_to_copmlete_purchase_page(self, prod_list_page):
         first_name = ConfigReader.read_config("valid_checkout_data", "first_name5")
         last_name = ConfigReader.read_config("valid_checkout_data", "last_name5")
         zip = ConfigReader.read_config("valid_checkout_data", "zip5")
 
-        prod_list_page = GeneralHelp.login(self)
-        GeneralHelp.add_product_to_cart(self, prod_list_page, product)
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
@@ -37,8 +35,11 @@ class TestCompletePurchasePage:
                         "finish transaction. Then logging out")
     @allure.title("Clicking back home button in complete transaction page")
     @allure.story("Clicking back home take to main page")
-    def test_back_home_btn(self):
-        overview_page = self.get_to_copmlete_purchase_page("Sauce_Labs_Onesie_position")
+    def test_back_home_btn(self, login_fix, add_product_to_cart_fix):
+        prod_list_page = login_fix
+        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Onesie_position")
+
+        overview_page = self.get_to_copmlete_purchase_page(prod_list_page)
         overview_page.go_to_prod_list_page()
 
         prod_list_page = ProductsList(self.driver)

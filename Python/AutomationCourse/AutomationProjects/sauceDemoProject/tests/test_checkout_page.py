@@ -11,15 +11,14 @@ from utils.general_helpers import GeneralHelp
 @allure.feature("Checkout")
 class TestCheckoutPage:
 
-    def get_to_checkout_page(self):
-        prod_list_page = GeneralHelp.login(self)
-        GeneralHelp.add_product_to_cart(self, prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+    def get_to_checkout_page(self, prod_list_page):
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
         cart_page.go_to_checkout_page()
 
         return CheckoutPage(self.driver)
+
 
     valid_checkout_info = [("first_name1", "last_name1", "zip1"),
                      ("first_name2", "last_name2", "zip2"),
@@ -33,12 +32,15 @@ class TestCheckoutPage:
     @allure.title("Valid input in checkout")
     @allure.story("Filling valid information in checkout")
     @pytest.mark.parametrize("first_name, last_name, zip", valid_checkout_info)
-    def test_fill_checkout_info_valid_info(self, first_name, last_name, zip):
+    def test_fill_checkout_info_valid_info(self, first_name, last_name, zip, login_fix, add_product_to_cart_fix):
         first_name = ConfigReader.read_config("valid_checkout_data", first_name)
         last_name = ConfigReader.read_config("valid_checkout_data", last_name)
         zip = ConfigReader.read_config("valid_checkout_data", zip)
 
-        checkout_page = self.get_to_checkout_page()
+        prod_list_page = login_fix
+        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+
+        checkout_page = self.get_to_checkout_page(prod_list_page)
         checkout_page.fill_info(first_name, last_name, zip)
 
         overview_page = OverviewPage(self.driver)
@@ -62,12 +64,16 @@ class TestCheckoutPage:
     @allure.title("Invalid input in checkout")
     @allure.story("Filling invalid information in checkout")
     @pytest.mark.parametrize("first_name, last_name, zip", invalid_checkout_info)
-    def test_fill_checkout_info_missing_info(self, first_name, last_name, zip):
+    def test_fill_checkout_info_missing_info(self, first_name, last_name, zip, login_fix, add_product_to_cart_fix):
         first_name = ConfigReader.read_config("invalid_checkout_data", first_name)
         last_name = ConfigReader.read_config("invalid_checkout_data", last_name)
         zip = ConfigReader.read_config("invalid_checkout_data", zip)
 
-        checkout_page = self.get_to_checkout_page()
+        prod_list_page = login_fix
+        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+
+        checkout_page = self.get_to_checkout_page(prod_list_page)
+
         checkout_page.fill_info(first_name, last_name, zip)
 
         expected_result = ""
@@ -92,8 +98,11 @@ class TestCheckoutPage:
                         "Then logging out")
     @allure.title("Clicking cancel button in checkout")
     @allure.story("Clicking cancel button on checkout take back to cart")
-    def test_cancel_button(self):
-        checkout_page = self.get_to_checkout_page()
+    def test_cancel_button(self, login_fix, add_product_to_cart_fix):
+        prod_list_page = login_fix
+        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+
+        checkout_page = self.get_to_checkout_page(prod_list_page)
         checkout_page.go_back_to_cart()
 
         cart_page = CartPage(self.driver)

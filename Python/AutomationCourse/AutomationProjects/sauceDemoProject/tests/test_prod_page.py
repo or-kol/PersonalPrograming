@@ -16,8 +16,8 @@ class TestProductPage:
     @allure.description("Logging in, going to product page, adding product to cart. Then logging out")
     @allure.title("Add to cart from product page")
     @allure.story("Going to product page and adding the product to cart from the product page")
-    def test_add_to_cart(self):
-        prod_list_page = GeneralHelp.login(self)
+    def test_add_to_cart(self, login_fix):
+        prod_list_page = login_fix
         product_num = int(random.choice(self.product_list))
         prod_list_page.go_to_prod_page(product_num)
 
@@ -34,8 +34,8 @@ class TestProductPage:
                         "remove product from cart. Then logging out")
     @allure.title("remove from cart from product page")
     @allure.story("Going to product page, adding the product to cart and removing the product from cart from the product page")
-    def test_remove_from_cart(self):
-        prod_list_page = GeneralHelp.login(self)
+    def test_remove_from_cart(self, login_fix):
+        prod_list_page = login_fix
         product_num = int(random.choice(self.product_list))
         prod_list_page.go_to_prod_page(product_num)
 
@@ -56,8 +56,8 @@ class TestProductPage:
     @allure.description("Logging in, going to product page, clicking back to products. Then logging out")
     @allure.title("Clicking back to products button")
     @allure.story("Going to product page, clicking back to product button, taking to main page")
-    def test_back_to_products_btn(self):
-        prod_list_page = GeneralHelp.login(self)
+    def test_back_to_products_btn(self, login_fix):
+        prod_list_page = login_fix
         product_num = int(random.choice(self.product_list))
         prod_list_page.go_to_prod_page(product_num)
 

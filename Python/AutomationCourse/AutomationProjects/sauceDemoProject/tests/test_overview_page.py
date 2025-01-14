@@ -38,7 +38,7 @@ class TestOverviewPage:
     @allure.title("Verify payment information")
     @allure.story("Adding a product to cart, going to cart and from there to overview. Filling information and verify "
                   "the payment information")
-    def test_verify_payment_info(self):
+    def test_verify_payment_info(self, login_fix, add_product_to_cart_fix):
         payment_info = ConfigReader.read_config("overview_page_data", "payment_info")
         overview_page = self.get_to_overview_page("Sauce_Labs_Onesie_position")
 

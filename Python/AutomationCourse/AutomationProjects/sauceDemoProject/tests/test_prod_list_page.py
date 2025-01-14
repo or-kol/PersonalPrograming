@@ -1,3 +1,6 @@
+from time import sleep
+from turtle import readconfig
+
 import allure
 import pytest
 from pages.cart_page import CartPage
@@ -16,9 +19,9 @@ class TestProductsList:
     @allure.title("Go to product page")
     @allure.story("Going to product page")
     @pytest.mark.parametrize("product", product_list)
-    def test_go_to_product_page(self, product):
-        prod_list_page = GeneralHelp.login(self)
-        product_num = int(ConfigReader.read_config("products_list", product))
+    def test_go_to_product_page(self, product, login_fix, add_product_to_cart_fix):
+        prod_list_page = login_fix
+        product_num = int(add_product_to_cart_fix(prod_list_page, product))
         prod_list_page.go_to_prod_page(product_num)
 
         prod_page = ProductPage(self.driver)
@@ -32,8 +35,8 @@ class TestProductsList:
     @allure.description("Logging in, going to cart. Then logging out")
     @allure.title("Go to cart")
     @allure.story("Going to cart")
-    def test_go_to_cart_page(self):
-        prod_list_page = GeneralHelp.login(self)
+    def test_go_to_cart_page(self, login_fix):
+        prod_list_page = login_fix
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
@@ -48,9 +51,10 @@ class TestProductsList:
     @allure.title("Add to cart from products list page")
     @allure.story("Adding product to cart from main page")
     @pytest.mark.parametrize("product", product_list)
-    def test_quick_add_to_cart(self, product):
-        prod_list_page = GeneralHelp.login(self)
+    def test_quick_add_to_cart(self, product, login_fix):
+        prod_list_page = login_fix
         product_num = int(ConfigReader.read_config("products_list", product))
+
         prod_list_page.quick_add_item_to_cart(product_num)
 
         expected_result = 1
@@ -65,8 +69,8 @@ class TestProductsList:
     @allure.title("remove from cart from products list page")
     @allure.story("Removing product from cart from main page")
     @pytest.mark.parametrize("product", product_list)
-    def test_quick_remove_from_cart(self, product):
-        prod_list_page = GeneralHelp.login(self)
+    def test_quick_remove_from_cart(self, product, login_fix, add_product_to_cart_fix):
+        prod_list_page = login_fix
         product_num = int(ConfigReader.read_config("products_list", product))
         prod_list_page.quick_add_item_to_cart(product_num)
         expected_num_of_products_in_cart = 1
@@ -90,8 +94,8 @@ class TestProductsList:
     @allure.title("Products list sort")
     @allure.story("Sorting products list")
     @pytest.mark.parametrize("sort", sort_options)
-    def test_product_sort(self, sort):
-        prod_list_page = GeneralHelp.login(self)
+    def test_product_sort(self, sort, login_fix):
+        prod_list_page = login_fix
         prod_list_page.sort_products(sort)
 
         expected_result = sort

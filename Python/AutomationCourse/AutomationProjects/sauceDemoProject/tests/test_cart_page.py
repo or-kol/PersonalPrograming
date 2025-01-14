@@ -18,9 +18,9 @@ class TestCartPage:
     @allure.title("Correct item added to cart")
     @allure.story("Adding a product to cart, going to cart and validate that the product added to cart is correct")
     @pytest.mark.parametrize("product", product_list)
-    def test_correct_item_added_to_cart(self, product):
-        prod_list_page = GeneralHelp.login(self)
-        GeneralHelp.add_product_to_cart(self, prod_list_page, product)
+    def test_correct_item_added_to_cart(self, product, login_fix, add_product_to_cart_fix):
+        prod_list_page = login_fix
+        add_product_to_cart_fix(prod_list_page, product)
 
         prod_list_page.go_to_cart()
 
@@ -39,9 +39,9 @@ class TestCartPage:
     @allure.title("remove from cart from cart page")
     @allure.story("Adding a product to cart, going to cart and removing the product from cart page")
     @pytest.mark.parametrize("product", product_list)
-    def test_remove_item_from_cart(self, product):
-        prod_list_page = GeneralHelp.login(self)
-        product_num = GeneralHelp.add_product_to_cart(self, prod_list_page, product)
+    def test_remove_item_from_cart(self, product, login_fix, add_product_to_cart_fix):
+        prod_list_page = login_fix
+        product_num = add_product_to_cart_fix(prod_list_page, product)
 
         prod_list_page.go_to_cart()
 
@@ -66,8 +66,8 @@ class TestCartPage:
     @allure.description("Logging in, going to cart, go to checkout. Then logging out")
     @allure.title("Go to checkout page")
     @allure.story("Going to cart page and continue to checkout page")
-    def test_go_to_checkout_page(self):
-        prod_list_page = GeneralHelp.login(self)
+    def test_go_to_checkout_page(self, login_fix):
+        prod_list_page = login_fix
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
@@ -87,8 +87,8 @@ class TestCartPage:
                         "Then logging out")
     @allure.title("Go to products list page")
     @allure.story("Going to cart page and going back to product list page")
-    def test_go_to_prod_list_page(self):
-        prod_list_page = GeneralHelp.login(self)
+    def test_go_to_prod_list_page(self, login_fix):
+        prod_list_page = login_fix
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)

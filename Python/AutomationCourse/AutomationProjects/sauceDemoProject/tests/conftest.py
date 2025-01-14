@@ -4,6 +4,8 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.alert import Alert
+from pages.login_page import LoginPage
+from pages.prod_list_page import ProductsList
 from utils.config_reader import ConfigReader
 
 @pytest.fixture(scope="function", autouse=True)
@@ -17,6 +19,21 @@ def setup(request):
     yield
     driver.quit()
 
+@pytest.fixture(scope="function")
+def login_fix():
+    login_page = LoginPage(driver)
+    user_name = ConfigReader.read_config("login_info", "valid_user_name")
+    password = ConfigReader.read_config("login_info", "valid_password")
+    login_page.fill_info(user_name, password)
+    return ProductsList(driver)
+
+@pytest.fixture(scope="function")
+def add_product_to_cart_fix():
+    def inner(prod_list_page, product):
+        product_num = int(ConfigReader.read_config("products_list", product))
+        prod_list_page.quick_add_item_to_cart(product_num)
+        return product_num
+    return inner
 
 @pytest.fixture
 def handle_alerts(request):
@@ -43,9 +60,3 @@ def pytest_sessionfinish() -> None:
     with open(allure_env_path, 'w') as f:
         data = '\n'.join([f'{variable}={value}' for variable, value in environment_properties.items()])
         f.write(data)
-
-
-
-
-
-#allure-results_20250108_094538
