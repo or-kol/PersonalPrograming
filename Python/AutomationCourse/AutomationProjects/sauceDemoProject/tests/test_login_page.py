@@ -1,5 +1,4 @@
 import allure
-
 from pages.login_page import LoginPage
 from pages.prod_list_page import ProductsList
 from utils.config_reader import ConfigReader

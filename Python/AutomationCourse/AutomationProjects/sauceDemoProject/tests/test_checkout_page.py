@@ -4,8 +4,6 @@ from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.overview_page import OverviewPage
 from utils.config_reader import ConfigReader
-from utils.general_helpers import GeneralHelp
-
 
 @allure.epic("Purchase")
 @allure.feature("Checkout")

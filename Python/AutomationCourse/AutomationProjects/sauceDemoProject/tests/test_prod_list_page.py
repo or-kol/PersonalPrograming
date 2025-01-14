@@ -1,12 +1,8 @@
-from time import sleep
-from turtle import readconfig
-
 import allure
 import pytest
 from pages.cart_page import CartPage
 from pages.prod_page import ProductPage
 from utils.config_reader import ConfigReader
-from utils.general_helpers import GeneralHelp
 
 @allure.epic("Website browsing")
 @allure.feature("Main page (product list page)")

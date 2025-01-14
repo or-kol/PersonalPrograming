@@ -5,7 +5,6 @@ from pages.complete_purchase_page import CompletePurchasePage
 from pages.overview_page import OverviewPage
 from pages.prod_list_page import ProductsList
 from utils.config_reader import ConfigReader
-from utils.general_helpers import GeneralHelp
 
 @allure.epic("Purchase")
 @allure.feature("Complete purchase")

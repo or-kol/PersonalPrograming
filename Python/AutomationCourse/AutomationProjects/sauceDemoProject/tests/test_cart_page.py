@@ -1,10 +1,9 @@
-import allure
 import pytest
 import allure
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from utils.config_reader import ConfigReader
-from utils.general_helpers import GeneralHelp
+
 
 @allure.epic("Purchase")
 @allure.feature("Cart")

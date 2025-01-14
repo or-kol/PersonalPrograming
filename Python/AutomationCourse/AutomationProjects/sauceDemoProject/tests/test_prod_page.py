@@ -1,10 +1,7 @@
 from random import random
-
 import allure
-
 from pages.prod_page import ProductPage
 from utils.config_reader import ConfigReader
-from utils.general_helpers import GeneralHelp
 import random
 
 @allure.epic("Website browsing")
