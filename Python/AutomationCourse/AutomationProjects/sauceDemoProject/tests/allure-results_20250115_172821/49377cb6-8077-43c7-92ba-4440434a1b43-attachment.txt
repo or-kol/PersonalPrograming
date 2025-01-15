@@ -1,0 +1,16 @@
+2025-01-15 17:45:37,311 - INFO - Filling text for element located by ('css selector', '#user-name')
+2025-01-15 17:45:37,312 - INFO - Highlighting element located by ('css selector', '#user-name') with color yellow
+2025-01-15 17:45:37,604 - INFO - Filling text for element located by ('css selector', '#password')
+2025-01-15 17:45:37,604 - INFO - Highlighting element located by ('css selector', '#password') with color yellow
+2025-01-15 17:45:37,825 - INFO - Clicking on element located by ('css selector', '#login-button')
+2025-01-15 17:45:37,858 - INFO - Highlighting element located by ('css selector', '#login-button') with color yellow
+2025-01-15 17:45:38,008 - INFO - Clicking on element located by ('css selector', '#item_5_title_link')
+2025-01-15 17:45:38,049 - INFO - Highlighting element located by ('css selector', '#item_5_title_link') with color yellow
+2025-01-15 17:45:38,201 - INFO - Clicking on element located by ('css selector', '#add-to-cart')
+2025-01-15 17:45:38,241 - INFO - Highlighting element located by ('css selector', '#add-to-cart') with color yellow
+2025-01-15 17:45:38,388 - INFO - Getting text from element located by ('css selector', '#shopping_cart_container')
+2025-01-15 17:45:38,406 - INFO - Highlighting element located by ('css selector', '#shopping_cart_container') with color red
+2025-01-15 17:45:38,479 - INFO - Clicking on element located by ('css selector', '#remove')
+2025-01-15 17:45:38,513 - INFO - Highlighting element located by ('css selector', '#remove') with color yellow
+2025-01-15 17:45:38,618 - INFO - Getting text from element located by ('css selector', '#shopping_cart_container')
+2025-01-15 17:45:38,628 - INFO - Highlighting element located by ('css selector', '#shopping_cart_container') with color red

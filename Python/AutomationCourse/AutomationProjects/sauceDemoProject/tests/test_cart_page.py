@@ -1,13 +1,17 @@
+from time import sleep
+
 import pytest
 import allure
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from utils.config_reader import ConfigReader
 
-
 @allure.epic("Purchase")
 @allure.feature("Cart")
 class TestCartPage:
+
+    ZERO_ITEMS_IN_CART = "0"
+    ONE_ITEM_IN_CART = "1"
 
     product_list = ConfigReader.get_keys("products_list")
 
@@ -17,10 +21,9 @@ class TestCartPage:
     @allure.title("Correct item added to cart")
     @allure.story("Adding a product to cart, going to cart and validate that the product added to cart is correct")
     @pytest.mark.parametrize("product", product_list)
-    def test_correct_item_added_to_cart(self, product, login_fix, add_product_to_cart_fix):
-        prod_list_page = login_fix
-        add_product_to_cart_fix(prod_list_page, product)
-
+    def test_correct_item_added_to_cart(self, product, login_fixture):
+        prod_list_page = login_fixture
+        prod_list_page.quick_add_item_to_cart(ConfigReader.read_config("products_list", product))
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
@@ -28,7 +31,6 @@ class TestCartPage:
 
         expected_result = product.replace("_position", "").replace("_", " ")
         actual_result = cart_items_list[0].text.lower()
-
         assert expected_result in actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
@@ -38,35 +40,29 @@ class TestCartPage:
     @allure.title("remove from cart from cart page")
     @allure.story("Adding a product to cart, going to cart and removing the product from cart page")
     @pytest.mark.parametrize("product", product_list)
-    def test_remove_item_from_cart(self, product, login_fix, add_product_to_cart_fix):
-        prod_list_page = login_fix
-        product_num = add_product_to_cart_fix(prod_list_page, product)
-
+    def test_remove_item_from_cart(self, product, login_fixture):
+        prod_list_page = login_fixture
+        product_num = ConfigReader.read_config("products_list", product)
+        prod_list_page.quick_add_item_to_cart(product_num)
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
-
-        expected_num_of_products_in_cart = 1
-        actual_num_of_products_in_cart = int(cart_page.get_amount_of_prod_in_cart())
-
-        if actual_num_of_products_in_cart == expected_num_of_products_in_cart:
+        if cart_page.get_amount_of_prod_in_cart() == self.ONE_ITEM_IN_CART:
             cart_page.remove_item_from_cart(product_num)
 
-            expected_result = 0
-            actual_result = 0 if cart_page.get_amount_of_prod_in_cart() == '' else int(
-                cart_page.get_amount_of_prod_in_cart())
-
+            expected_result = self.ZERO_ITEMS_IN_CART
+            actual_result = self.ZERO_ITEMS_IN_CART if cart_page.get_amount_of_prod_in_cart() == '' else cart_page.get_amount_of_prod_in_cart()
             assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
         else:
-            f"there are {actual_num_of_products_in_cart} in cart, expected {expected_num_of_products_in_cart}"
+            f"there are {cart_page.get_amount_of_prod_in_cart()} in cart, expected {self.ONE_ITEM_IN_CART}"
 
 
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.description("Logging in, going to cart, go to checkout. Then logging out")
     @allure.title("Go to checkout page")
     @allure.story("Going to cart page and continue to checkout page")
-    def test_go_to_checkout_page(self, login_fix):
-        prod_list_page = login_fix
+    def test_go_to_checkout_page(self, login_fixture):
+        prod_list_page = login_fixture
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
@@ -86,8 +82,8 @@ class TestCartPage:
                         "Then logging out")
     @allure.title("Go to products list page")
     @allure.story("Going to cart page and going back to product list page")
-    def test_go_to_prod_list_page(self, login_fix):
-        prod_list_page = login_fix
+    def test_go_to_prod_list_page(self, login_fixture):
+        prod_list_page = login_fixture
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)

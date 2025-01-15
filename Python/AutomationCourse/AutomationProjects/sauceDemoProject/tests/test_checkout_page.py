@@ -11,10 +11,8 @@ class TestCheckoutPage:
 
     def get_to_checkout_page(self, prod_list_page):
         prod_list_page.go_to_cart()
-
         cart_page = CartPage(self.driver)
         cart_page.go_to_checkout_page()
-
         return CheckoutPage(self.driver)
 
 
@@ -30,22 +28,20 @@ class TestCheckoutPage:
     @allure.title("Valid input in checkout")
     @allure.story("Filling valid information in checkout")
     @pytest.mark.parametrize("first_name, last_name, zip", valid_checkout_info)
-    def test_fill_checkout_info_valid_info(self, first_name, last_name, zip, login_fix, add_product_to_cart_fix):
+    def test_fill_checkout_info_valid_info(self, first_name, last_name, zip, login_fixture):
         first_name = ConfigReader.read_config("valid_checkout_data", first_name)
         last_name = ConfigReader.read_config("valid_checkout_data", last_name)
         zip = ConfigReader.read_config("valid_checkout_data", zip)
 
-        prod_list_page = login_fix
-        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+        prod_list_page = login_fixture
+        prod_list_page.quick_add_item_to_cart(ConfigReader.read_config("products_list", "Sauce_Labs_Bolt_T-Shirt_position"))
 
         checkout_page = self.get_to_checkout_page(prod_list_page)
         checkout_page.fill_info(first_name, last_name, zip)
 
         overview_page = OverviewPage(self.driver)
-
         expected_result = "Checkout: Overview"
         actual_result = overview_page.get_overview_page_title()
-
         assert expected_result == actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
@@ -62,18 +58,16 @@ class TestCheckoutPage:
     @allure.title("Invalid input in checkout")
     @allure.story("Filling invalid information in checkout")
     @pytest.mark.parametrize("first_name, last_name, zip", invalid_checkout_info)
-    def test_fill_checkout_info_missing_info(self, first_name, last_name, zip, login_fix, add_product_to_cart_fix):
+    def test_fill_checkout_info_missing_info(self, first_name, last_name, zip, login_fixture):
         first_name = ConfigReader.read_config("invalid_checkout_data", first_name)
         last_name = ConfigReader.read_config("invalid_checkout_data", last_name)
         zip = ConfigReader.read_config("invalid_checkout_data", zip)
 
-        prod_list_page = login_fix
-        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+        prod_list_page = login_fixture
+        prod_list_page.quick_add_item_to_cart(ConfigReader.read_config("products_list", "Sauce_Labs_Bolt_T-Shirt_position"))
 
         checkout_page = self.get_to_checkout_page(prod_list_page)
-
         checkout_page.fill_info(first_name, last_name, zip)
-
         expected_result = ""
         if first_name == "" or first_name.isnumeric():
                 expected_result = "Error: First Name is required"
@@ -96,9 +90,9 @@ class TestCheckoutPage:
                         "Then logging out")
     @allure.title("Clicking cancel button in checkout")
     @allure.story("Clicking cancel button on checkout take back to cart")
-    def test_cancel_button(self, login_fix, add_product_to_cart_fix):
-        prod_list_page = login_fix
-        add_product_to_cart_fix(prod_list_page, "Sauce_Labs_Bolt_T-Shirt_position")
+    def test_cancel_button(self, login_fixture):
+        prod_list_page = login_fixture
+        prod_list_page.quick_add_item_to_cart(ConfigReader.read_config("products_list", "Sauce_Labs_Bolt_T-Shirt_position"))
 
         checkout_page = self.get_to_checkout_page(prod_list_page)
         checkout_page.go_back_to_cart()

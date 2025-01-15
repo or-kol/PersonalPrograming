@@ -1,0 +1,11 @@
+2025-01-15 17:29:10,884 - INFO - Filling text for element located by ('css selector', '#user-name')
+2025-01-15 17:29:10,885 - INFO - Highlighting element located by ('css selector', '#user-name') with color yellow
+2025-01-15 17:29:11,270 - INFO - Filling text for element located by ('css selector', '#password')
+2025-01-15 17:29:11,270 - INFO - Highlighting element located by ('css selector', '#password') with color yellow
+2025-01-15 17:29:11,503 - INFO - Clicking on element located by ('css selector', '#login-button')
+2025-01-15 17:29:11,540 - INFO - Highlighting element located by ('css selector', '#login-button') with color yellow
+2025-01-15 17:29:11,719 - INFO - Clicking on element located by ('css selector', '#add-to-cart-sauce-labs-onesie')
+2025-01-15 17:29:28,129 - INFO - Highlighting element located by ('css selector', '#add-to-cart-sauce-labs-onesie') with color yellow
+2025-01-15 17:29:28,200 - INFO - Clicking on element located by ('css selector', '#shopping_cart_container')
+2025-01-15 17:29:28,225 - INFO - Highlighting element located by ('css selector', '#shopping_cart_container') with color yellow
+2025-01-15 17:29:28,299 - INFO - Getting list of elements located by ('css selector', ".cart_list>[data-test='inventory-item']")

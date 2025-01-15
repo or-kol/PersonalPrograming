@@ -1,0 +1,45 @@
+2025-01-15 17:34:43,659 - INFO - Filling text for element located by ('css selector', '#user-name')
+2025-01-15 17:34:43,659 - INFO - Highlighting element located by ('css selector', '#user-name') with color yellow
+2025-01-15 17:34:44,053 - INFO - Filling text for element located by ('css selector', '#password')
+2025-01-15 17:34:44,053 - INFO - Highlighting element located by ('css selector', '#password') with color yellow
+2025-01-15 17:34:44,313 - INFO - Clicking on element located by ('css selector', '#login-button')
+2025-01-15 17:34:44,349 - INFO - Highlighting element located by ('css selector', '#login-button') with color yellow
+2025-01-15 17:34:56,845 - INFO - Clicking on element located by ('css selector', '#add-to-cart-sauce-labs-bolt-t-shirt')
+2025-01-15 17:34:56,898 - INFO - Highlighting element located by ('css selector', '#add-to-cart-sauce-labs-bolt-t-shirt') with color yellow
+2025-01-15 17:34:56,997 - INFO - Clicking on element located by ('css selector', '#shopping_cart_container')
+2025-01-15 17:34:57,030 - INFO - Highlighting element located by ('css selector', '#shopping_cart_container') with color yellow
+2025-01-15 17:34:57,128 - INFO - Clicking on element located by ('css selector', '#checkout')
+2025-01-15 17:34:57,172 - INFO - Highlighting element located by ('css selector', '#checkout') with color yellow
+2025-01-15 17:34:57,313 - INFO - Filling text for element located by ('css selector', '#first-name')
+2025-01-15 17:34:57,314 - INFO - Highlighting element located by ('css selector', '#first-name') with color yellow
+2025-01-15 17:34:57,453 - INFO - Filling text for element located by ('css selector', '#last-name')
+2025-01-15 17:34:57,453 - INFO - Highlighting element located by ('css selector', '#last-name') with color yellow
+2025-01-15 17:34:57,567 - INFO - Filling text for element located by ('css selector', '#postal-code')
+2025-01-15 17:34:57,567 - INFO - Highlighting element located by ('css selector', '#postal-code') with color yellow
+2025-01-15 17:34:57,716 - INFO - Clicking on element located by ('css selector', '#continue')
+2025-01-15 17:34:57,754 - INFO - Highlighting element located by ('css selector', '#continue') with color yellow
+2025-01-15 17:34:57,913 - INFO - Getting text from element located by ('css selector', "[data-test='error']")
+2025-01-15 17:35:08,318 - ERROR - Element not found within 10 seconds: ('css selector', "[data-test='error']"). Error: Message: 
+Stacktrace:
+	GetHandleVerifier [0x00007FF67B0280D5+2992373]
+	(No symbol) [0x00007FF67ACBBFD0]
+	(No symbol) [0x00007FF67AB5590A]
+	(No symbol) [0x00007FF67ABA926E]
+	(No symbol) [0x00007FF67ABA955C]
+	(No symbol) [0x00007FF67ABF27D7]
+	(No symbol) [0x00007FF67ABCF3AF]
+	(No symbol) [0x00007FF67ABEF584]
+	(No symbol) [0x00007FF67ABCF113]
+	(No symbol) [0x00007FF67AB9A918]
+	(No symbol) [0x00007FF67AB9BA81]
+	GetHandleVerifier [0x00007FF67B086A2D+3379789]
+	GetHandleVerifier [0x00007FF67B09C32D+3468109]
+	GetHandleVerifier [0x00007FF67B090043+3418211]
+	GetHandleVerifier [0x00007FF67AE1C78B+847787]
+	(No symbol) [0x00007FF67ACC757F]
+	(No symbol) [0x00007FF67ACC2FC4]
+	(No symbol) [0x00007FF67ACC315D]
+	(No symbol) [0x00007FF67ACB2979]
+	BaseThreadInitThunk [0x00007FFFF665E8D7+23]
+	RtlUserThreadStart [0x00007FFFF7D3FBCC+44]
+

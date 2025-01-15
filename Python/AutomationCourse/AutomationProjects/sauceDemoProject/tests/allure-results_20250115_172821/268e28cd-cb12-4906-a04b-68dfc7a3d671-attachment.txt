@@ -1,0 +1,22 @@
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#user-name')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#user-name') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#password')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#password') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:35 Clicking on element located by ('css selector', '#login-button')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#login-button') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:35 Clicking on element located by ('css selector', '#add-to-cart-sauce-labs-backpack')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#add-to-cart-sauce-labs-backpack') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:35 Clicking on element located by ('css selector', '#shopping_cart_container')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#shopping_cart_container') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:35 Clicking on element located by ('css selector', '#checkout')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#checkout') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#first-name')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#first-name') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#last-name')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#last-name') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#postal-code')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#postal-code') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:35 Clicking on element located by ('css selector', '#continue')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#continue') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:51 Getting text from element located by ('css selector', '.summary_total_label')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '.summary_total_label') with color red

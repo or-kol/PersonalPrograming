@@ -1,0 +1,22 @@
+2025-01-15 17:37:26,884 - INFO - Filling text for element located by ('css selector', '#user-name')
+2025-01-15 17:37:26,885 - INFO - Highlighting element located by ('css selector', '#user-name') with color yellow
+2025-01-15 17:37:27,282 - INFO - Filling text for element located by ('css selector', '#password')
+2025-01-15 17:37:27,282 - INFO - Highlighting element located by ('css selector', '#password') with color yellow
+2025-01-15 17:37:27,670 - INFO - Clicking on element located by ('css selector', '#login-button')
+2025-01-15 17:37:27,722 - INFO - Highlighting element located by ('css selector', '#login-button') with color yellow
+2025-01-15 17:37:27,958 - INFO - Clicking on element located by ('css selector', '#add-to-cart-sauce-labs-onesie')
+2025-01-15 17:37:28,011 - INFO - Highlighting element located by ('css selector', '#add-to-cart-sauce-labs-onesie') with color yellow
+2025-01-15 17:37:28,164 - INFO - Clicking on element located by ('css selector', '#shopping_cart_container')
+2025-01-15 17:37:28,204 - INFO - Highlighting element located by ('css selector', '#shopping_cart_container') with color yellow
+2025-01-15 17:37:28,315 - INFO - Clicking on element located by ('css selector', '#checkout')
+2025-01-15 17:37:28,357 - INFO - Highlighting element located by ('css selector', '#checkout') with color yellow
+2025-01-15 17:37:28,466 - INFO - Filling text for element located by ('css selector', '#first-name')
+2025-01-15 17:37:28,466 - INFO - Highlighting element located by ('css selector', '#first-name') with color yellow
+2025-01-15 17:37:28,644 - INFO - Filling text for element located by ('css selector', '#last-name')
+2025-01-15 17:37:28,644 - INFO - Highlighting element located by ('css selector', '#last-name') with color yellow
+2025-01-15 17:37:28,782 - INFO - Filling text for element located by ('css selector', '#postal-code')
+2025-01-15 17:37:28,782 - INFO - Highlighting element located by ('css selector', '#postal-code') with color yellow
+2025-01-15 17:37:28,961 - INFO - Clicking on element located by ('css selector', '#continue')
+2025-01-15 17:37:28,993 - INFO - Highlighting element located by ('css selector', '#continue') with color yellow
+2025-01-15 17:37:29,149 - INFO - Getting text from element located by ('css selector', '.summary_subtotal_label')
+2025-01-15 17:37:29,176 - INFO - Highlighting element located by ('css selector', '.summary_subtotal_label') with color red

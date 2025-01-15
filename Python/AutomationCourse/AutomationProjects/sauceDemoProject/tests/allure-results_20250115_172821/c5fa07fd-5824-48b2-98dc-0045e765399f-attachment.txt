@@ -1,0 +1,9 @@
+2025-01-15 17:44:57,470 - INFO - Filling text for element located by ('css selector', '#user-name')
+2025-01-15 17:44:57,471 - INFO - Highlighting element located by ('css selector', '#user-name') with color yellow
+2025-01-15 17:44:57,864 - INFO - Filling text for element located by ('css selector', '#password')
+2025-01-15 17:44:57,865 - INFO - Highlighting element located by ('css selector', '#password') with color yellow
+2025-01-15 17:44:58,108 - INFO - Clicking on element located by ('css selector', '#login-button')
+2025-01-15 17:44:58,144 - INFO - Highlighting element located by ('css selector', '#login-button') with color yellow
+2025-01-15 17:44:58,340 - INFO - Selecting option 'za' from dropdown located by ('css selector', '.product_sort_container')
+2025-01-15 17:44:58,341 - INFO - Highlighting element located by ('css selector', '.product_sort_container') with color yellow
+2025-01-15 17:44:58,520 - INFO - Getting list of elements located by ('css selector', ".inventory_list>.inventory_item>.inventory_item_description>.inventory_item_label>[data-test$='title-link']>.inventory_item_name")

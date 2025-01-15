@@ -1,0 +1,8 @@
+2025-01-15 17:35:48,559 - INFO - Filling text for element located by ('css selector', '#user-name')
+2025-01-15 17:35:48,560 - INFO - Highlighting element located by ('css selector', '#user-name') with color yellow
+2025-01-15 17:35:49,065 - INFO - Filling text for element located by ('css selector', '#password')
+2025-01-15 17:35:49,066 - INFO - Highlighting element located by ('css selector', '#password') with color yellow
+2025-01-15 17:35:49,284 - INFO - Clicking on element located by ('css selector', '#login-button')
+2025-01-15 17:35:49,322 - INFO - Highlighting element located by ('css selector', '#login-button') with color yellow
+2025-01-15 17:35:49,481 - INFO - Getting text from element located by ('css selector', '.error-message-container')
+2025-01-15 17:35:49,508 - INFO - Highlighting element located by ('css selector', '.error-message-container') with color red

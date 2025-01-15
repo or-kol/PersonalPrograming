@@ -7,7 +7,10 @@ from utils.config_reader import ConfigReader
 @allure.epic("Website browsing")
 @allure.feature("Main page (product list page)")
 class TestProductsList:
-    
+
+    ZERO_ITEMS_IN_CART = "0"
+    ONE_ITEM_IN_CART = "1"
+
     product_list = ConfigReader.get_keys("products_list")
 
     @allure.severity(allure.severity_level.CRITICAL)
@@ -15,15 +18,15 @@ class TestProductsList:
     @allure.title("Go to product page")
     @allure.story("Going to product page")
     @pytest.mark.parametrize("product", product_list)
-    def test_go_to_product_page(self, product, login_fix, add_product_to_cart_fix):
-        prod_list_page = login_fix
-        product_num = int(add_product_to_cart_fix(prod_list_page, product))
+    def test_go_to_product_page(self, product, login_fixture):
+        prod_list_page = login_fixture
+        product_num = ConfigReader.read_config("products_list", product)
         prod_list_page.go_to_prod_page(product_num)
 
         prod_page = ProductPage(self.driver)
+
         expected_result = product.replace("_position", "").replace("_", " ")
         actual_result = prod_page.get_product_name().lower()
-
         assert expected_result in actual_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
@@ -31,8 +34,8 @@ class TestProductsList:
     @allure.description("Logging in, going to cart. Then logging out")
     @allure.title("Go to cart")
     @allure.story("Going to cart")
-    def test_go_to_cart_page(self, login_fix):
-        prod_list_page = login_fix
+    def test_go_to_cart_page(self, login_fixture):
+        prod_list_page = login_fixture
         prod_list_page.go_to_cart()
 
         cart_page = CartPage(self.driver)
@@ -47,15 +50,14 @@ class TestProductsList:
     @allure.title("Add to cart from products list page")
     @allure.story("Adding product to cart from main page")
     @pytest.mark.parametrize("product", product_list)
-    def test_quick_add_to_cart(self, product, login_fix):
-        prod_list_page = login_fix
-        product_num = int(ConfigReader.read_config("products_list", product))
+    def test_quick_add_to_cart(self, product, login_fixture):
+        prod_list_page = login_fixture
+        product_num = ConfigReader.read_config("products_list", product)
 
         prod_list_page.quick_add_item_to_cart(product_num)
 
-        expected_result = 1
-        actual_result = int(prod_list_page.get_amount_of_prod_in_cart())
-
+        expected_result = self.ONE_ITEM_IN_CART
+        actual_result = prod_list_page.get_amount_of_prod_in_cart()
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
@@ -65,22 +67,18 @@ class TestProductsList:
     @allure.title("remove from cart from products list page")
     @allure.story("Removing product from cart from main page")
     @pytest.mark.parametrize("product", product_list)
-    def test_quick_remove_from_cart(self, product, login_fix, add_product_to_cart_fix):
-        prod_list_page = login_fix
-        product_num = int(ConfigReader.read_config("products_list", product))
+    def test_quick_remove_from_cart(self, product, login_fixture):
+        prod_list_page = login_fixture
+        product_num = ConfigReader.read_config("products_list", product)
         prod_list_page.quick_add_item_to_cart(product_num)
-        expected_num_of_products_in_cart = 1
-        actual_num_of_products_in_cart = int(prod_list_page.get_amount_of_prod_in_cart())
 
-        if actual_num_of_products_in_cart == expected_num_of_products_in_cart:
+        if prod_list_page.get_amount_of_prod_in_cart() == self.ONE_ITEM_IN_CART:
             prod_list_page.quick_remove_item_from_cart(product_num)
-
-            expected_result = 0
-            actual_result = 0 if prod_list_page.get_amount_of_prod_in_cart() == '' else int(prod_list_page.get_amount_of_prod_in_cart())
-
+            expected_result = self.ZERO_ITEMS_IN_CART
+            actual_result = self.ZERO_ITEMS_IN_CART if prod_list_page.get_amount_of_prod_in_cart() == '' else prod_list_page.get_amount_of_prod_in_cart()
             assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
         else:
-            f"there are {actual_num_of_products_in_cart} in cart, expected {expected_num_of_products_in_cart}"
+            f"there are {int(prod_list_page.get_amount_of_prod_in_cart())} in cart, expected {self.ONE_ITEM_IN_CART}"
 
 
     sort_options = ConfigReader.get_values("product_sort_options")
@@ -90,13 +88,12 @@ class TestProductsList:
     @allure.title("Products list sort")
     @allure.story("Sorting products list")
     @pytest.mark.parametrize("sort", sort_options)
-    def test_product_sort(self, sort, login_fix):
-        prod_list_page = login_fix
+    def test_product_sort(self, sort, login_fixture):
+        prod_list_page = login_fixture
         prod_list_page.sort_products(sort)
 
         expected_result = sort
-        actual_result = "Sorting Error"
-
+        actual_result = ""
         match sort:
             case "az":
                 products_names_list = prod_list_page.get_products_names_list()
@@ -111,6 +108,7 @@ class TestProductsList:
                 products_prices_list = prod_list_page.get_products_prices_list()
                 actual_result = sort if products_prices_list == sorted(products_prices_list, key=lambda x: float(x[1:]), reverse=True) else "Sorting Error"
             case _:
+                actual_result = "Sorting Error"
                 print(f"{sort} is invalid sorting option")
 
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"

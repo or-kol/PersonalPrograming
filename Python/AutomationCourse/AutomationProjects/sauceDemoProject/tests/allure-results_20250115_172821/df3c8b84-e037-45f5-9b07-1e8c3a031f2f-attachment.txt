@@ -1,0 +1,9 @@
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#user-name')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#user-name') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:21 Filling text for element located by ('css selector', '#password')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#password') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:35 Clicking on element located by ('css selector', '#login-button')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '#login-button') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:67 Selecting option 'hilo' from dropdown located by ('css selector', '.product_sort_container')
+[32mINFO    [0m pages.base_page:base_page.py:92 Highlighting element located by ('css selector', '.product_sort_container') with color yellow
+[32mINFO    [0m pages.base_page:base_page.py:80 Getting list of elements located by ('css selector', '.inventory_list>.inventory_item>div.inventory_item_description>div.pricebar>div')

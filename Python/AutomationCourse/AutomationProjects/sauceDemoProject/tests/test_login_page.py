@@ -20,7 +20,6 @@ class TestLoginPage:
         prod_list_page = ProductsList(self.driver)
         expected_result = "Products"
         actual_result = prod_list_page.get_prod_list_page_title()
-
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
@@ -35,7 +34,6 @@ class TestLoginPage:
 
         expected_result = "Epic sadface: Sorry, this user has been locked out."
         actual_result = login_page.get_error_msg()
-
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
 
 
@@ -50,5 +48,4 @@ class TestLoginPage:
 
         expected_result = "Epic sadface: Username and password do not match any user in this service"
         actual_result = login_page.get_error_msg()
-
         assert actual_result == expected_result, f"Actual result = '{actual_result}', expected = '{expected_result}'"
